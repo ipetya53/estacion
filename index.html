@@ -43,7 +43,7 @@
 
     <script>
         function recibirDatos() {
-            fetch('/datos')  // Reemplaza con la ruta correcta para obtener los datos de la ESP8266
+            fetch('https://192, 168, 1, 100/datos')  // Reemplaza con la ruta correcta para obtener los datos de la ESP8266
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("datosRecibidos").innerText = data;
