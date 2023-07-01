@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>ESTACION IPETYA 53</title>
+</head>
+<body>
+    <header>
+        <div class="LOGOFRAY">
+            <img src="img/ESCUDO FRAY.png" alt="ESCUDO" class="ESCUDO">
+        </div>
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="">Contacto</a>
+                    </li>
+                    <li>
+                        <a href="">Direccion</a>
+                    </li>
+                    <li>
+                        <a href="">Electronica</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="contenido">
+        <h1>Datos Recibidos:</h1>
+        <div id="datosRecibidos"></div>
+    </div>
+
+    <footer>
+        <div class="marcas"></div>
+        <div class="logo">
+            <img src="img/ESCUDO FRAY.png" alt="logo">
+        </div>
+    </footer>
+
+    <script>
+        function recibirDatos() {
+            fetch('/datos')  // Reemplaza con la ruta correcta para obtener los datos de la ESP8266
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("datosRecibidos").innerText = data;
+                })
+                .catch(error => console.error(error));
+
+            setTimeout(recibirDatos, 2000); // Actualiza los datos cada 2 segundos (ajusta el tiempo según tus necesidades)
+        }
+
+        // Llama a la función para comenzar a recibir los datos
+        recibirDatos();
+    </script>
+</body>
+</html>
