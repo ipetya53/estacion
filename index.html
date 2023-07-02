@@ -43,18 +43,29 @@
 
     <script>
         function recibirDatos() {
-            fetch('http://192.168.68.118/datos')  // Reemplaza con la ruta correcta para obtener los datos de la ESP8266
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("datosRecibidos").innerText = data;
-                })
-                .catch(error => console.error(error));
+        fetch('http://dirección-de-tu-api-intermedia/api/datos')
+            .then(response => response.json())
+            .then(data => {
+                // Aquí puedes manipular los datos recibidos según tu necesidad
+                // Por ejemplo, puedes mostrarlos en una lista o en un elemento específico
+                const datosRecibidos = document.getElementById("datosRecibidos");
+                datosRecibidos.innerHTML = "";
 
-            setTimeout(recibirDatos, 2000); // Actualiza los datos cada 2 segundos (ajusta el tiempo según tus necesidades)
-        }
+                // Itera sobre los datos recibidos y crea elementos para mostrarlos
+                data.forEach(dato => {
+                    const elemento = document.createElement("p");
+                    elemento.innerText = dato;
+                    datosRecibidos.appendChild(elemento);
+                });
+            })
+            .catch(error => console.error(error));
 
-        // Llama a la función para comenzar a recibir los datos
-        recibirDatos();
+        setTimeout(recibirDatos, 2000); // Actualiza los datos cada 2 segundos (ajusta el tiempo según tus necesidades)
+    }
+
+    // Llama a la función para comenzar a recibir los datos
+    recibirDatos();
+        
     </script>
 </body>
 </html>
